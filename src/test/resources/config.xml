@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<settings>
+    <environment>us_prod</environment>
+    <headless>no</headless>
+    <browser>chrome</browser>
+</settings>
