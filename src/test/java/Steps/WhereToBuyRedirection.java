@@ -10,11 +10,11 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 
-public class WhereToBuyRedierction {
+public class WhereToBuyRedirection {
 
     private Product product;
     private RemoteWebDriver _driver;
-    public WhereToBuyRedierction(BaseUtilities base) {
+    public WhereToBuyRedirection(BaseUtilities base) {
 
         _driver= base._driver;
     }
@@ -32,4 +32,5 @@ public class WhereToBuyRedierction {
         Assert.assertTrue(product.IsProductPageTitleDisplayed());
 
     }
+
 }

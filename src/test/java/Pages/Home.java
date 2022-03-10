@@ -291,8 +291,35 @@ public class Home {
     }
 
 
+    @FindBy(xpath = "button#nav-link-0")
+    WebElement ProductsNavLnk;
 
+    public RemoteWebDriver ClickOnProductsNavLink() {
+        Helper.click(driver, ProductsNavLnk);
+        return driver;
+    }
 
+    @FindBy(css = "section.us-c-newsletter-sign-up-popup__box.is-active")
+    WebElement SignupDrawerPopup;
+
+    public boolean IsSignUpPopupDisplayed() {
+        return SignupDrawerPopup.isDisplayed();
+
+    }
+
+    @FindBy(xpath = "//input[@id='email-popup']")
+    WebElement EmailField;
+
+    public void EnterEmail(String email) {
+        Helper.click(driver, EmailField);
+        EmailField.sendKeys(email);
+    }
+
+    @FindBy(css = "button.us-c-newsletter-sign-up-popup__continue")
+    WebElement ContinueBtn;
+    public void ClickOnContinueButton() {
+        Helper.click(driver, ContinueBtn );
+    }
 }
 
 

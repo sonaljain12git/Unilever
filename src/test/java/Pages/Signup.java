@@ -66,4 +66,11 @@ public class Signup {
         btnToSend.click();
 
     }
+
+    @FindBy(css = "h1.c-form__title.o-heading-xl")
+    WebElement SignUpPageTitle;
+
+    public boolean IsSignUpPageTitleDisplayed() {
+        return SignUpPageTitle.isDisplayed();
+    }
 }
