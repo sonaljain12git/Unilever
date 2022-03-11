@@ -31,7 +31,10 @@ public class SignupSteps {
     @Then("it should submit and redirect to thank you page.")
     public void it_should_submit_and_redirect_to_thankYou_page() {
         Assert.assertTrue(signUp.ThankYouMessageDisplay());
+        //signUp.clickBckToBrowseringBtn();
+        //_driver.getCurrentUrl();
     }
+
 
     @When("enter all the details except name and submit")
     public void enter_all_the_details_except_name_and_submit() {

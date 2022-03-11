@@ -73,4 +73,10 @@ public class Signup {
     public boolean IsSignUpPageTitleDisplayed() {
         return SignUpPageTitle.isDisplayed();
     }
+
+    @FindBy(css = "a.c-button")
+    WebElement BckToBrowserBtn;
+    public void clickBckToBrowseringBtn() {
+        Helper.click(driver, BckToBrowserBtn);
+    }
 }

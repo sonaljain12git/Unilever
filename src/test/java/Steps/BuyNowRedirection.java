@@ -18,9 +18,11 @@ public class BuyNowRedirection {
     }
 
     @And("click on Buy Now button")
-    public void click_on_buy_now_button(){
+    public void click_on_buy_now_button() throws InterruptedException {
         _home=new Home(_driver);
+        _home.isBestSellingProductSectionDisplayed();
         _home.ClickOnBuyNow();
+        Thread.sleep(50);
         System.out.println("BuyNow button is clicked");
     }
 
@@ -37,8 +39,15 @@ public class BuyNowRedirection {
     @Then("it should redirect to the vendor page")
     public void it_should_redirect_to_the_vendor_page() {
 
-        System.out.printf(_driver.getCurrentUrl());
+        System.out.println(_driver.getCurrentUrl());
         System.out.println(tagUrl);
         Assert.assertTrue("",_home.getActiveWindow().getCurrentUrl().equalsIgnoreCase(tagUrl));
     }
+
+    @And("click on cross button on popup")
+    public void clickOnCrossButtonOnPopup() {
+        _home.ClickonCrossBtn();
+    }
+
+
 }

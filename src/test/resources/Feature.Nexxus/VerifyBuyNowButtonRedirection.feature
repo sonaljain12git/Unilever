@@ -6,6 +6,7 @@ Feature: Validate the buy now button redirection
     When verifying the best selling product section visibility
     And click on Buy Now button
     Then Find Online popup is displayed
+    And click on cross button on popup
 
   @buyNow
   Scenario: Verifying buy now functionality using vendor

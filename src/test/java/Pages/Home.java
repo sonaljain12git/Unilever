@@ -201,7 +201,8 @@ public class Home {
         return driver;
     }
 
-    @FindBy(css = "h2.c-section__title")
+    //@FindBy(css = "h2.c-section__title")
+    @FindBy(xpath = "//a[@href='/us/en/products/styling/nexxus-leave-in-lightweight-hair-spray/']")
     WebElement BestSellingProductSection;
 
     public void isBestSellingProductSectionDisplayed() {
@@ -244,25 +245,28 @@ public class Home {
 
     }
 
-    @FindBy(xpath = "//button[@data-testid='add-to-basket-display-button']")
+    @FindBy(xpath = "//a[@href='/us/en/products/styling/nexxus-leave-in-lightweight-hair-spray/']/../div/div")
     WebElement BuyNowButton;
 
     public void ClickOnBuyNow() {
-        var buyItems = driver.findElements(By.xpath("//button[@data-testid='add-to-basket-display-button']"));
-        Random rand = new Random();
-        int upperbound = buyItems.size() - 2;
-        int int_random = rand.nextInt(upperbound);
-        Helper.scrollAndClick(driver, buyItems.get(int_random));
-        //buyItems.get(int_random).click();
+        Helper.click(driver, BuyNowButton);
+
     }
 
-    @FindBy(xpath = "//ul[@class='ps-online-sellers']")
+    @FindBy(xpath = "//ul[@id='__ps-online-sellers_2']")
     WebElement FindOnlinePopup;
 
     public boolean verifyFindOnlinePopup() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOf(FindOnlinePopup));
         return FindOnlinePopup.isDisplayed();
+    }
+
+    @FindBy(css = "span.ps-lightbox-close")
+    WebElement CrossBtn;
+
+    public void ClickonCrossBtn() {
+        Helper.click(driver, CrossBtn);
     }
 
     public String selectVendor() throws InterruptedException {
@@ -319,6 +323,35 @@ public class Home {
     WebElement ContinueBtn;
     public void ClickOnContinueButton() {
         Helper.click(driver, ContinueBtn );
+    }
+
+    @FindBy(css = "div.keen-slider article.c-editorial-card")
+    WebElement ExploreMoreSection;
+
+    public boolean IsExploreMoreSectionDisplayed() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", ExploreMoreSection);
+        return ExploreMoreSection.isDisplayed();
+    }
+
+    public RemoteWebDriver ClickOnEditorialCard() {
+        Helper.click(driver, ExploreMoreSection);
+        return driver;
+    }
+
+    @FindBy(css = "a.k.olapic-k")
+    WebElement VisitGalleryBtn;
+    public RemoteWebDriver ClickOnVisitGalleryBtn()  {
+        Helper.scrollAndClick(driver, VisitGalleryBtn);
+        return driver;
+    }
+
+    @FindBy(css = "div.olapic-slider-widget.olapic-slider")
+    WebElement GallerySlider;
+
+    public boolean IsGallerySliderDisplayed() throws InterruptedException {
+        Thread.sleep(5);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", GallerySlider);
+        return GallerySlider.isDisplayed();
     }
 }
 
