@@ -353,6 +353,104 @@ public class Home {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", GallerySlider);
         return GallerySlider.isDisplayed();
     }
+
+    @FindBy(css = "a.olapic-terms-link")
+    WebElement OlapicFooterTCLink;
+
+    public RemoteWebDriver ClickOnOlapicFooterTCLink() {
+        Helper.scrollAndClick(driver, OlapicFooterTCLink);
+        return driver;
+    }
+
+    public void IsUGCPolicyPageDisplayed(){
+        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
+        if (tabs2.size() > 1) {
+            driver.switchTo().window(tabs2.get(1));
+            System.out.println(driver.getCurrentUrl());
+        }
+
+    }
+
+
+    @FindBy(css = "div.olapic-slider-copy a")
+    WebElement PoweredBySNLink;
+
+    public RemoteWebDriver ClickOnOlapicFooterPoweredBySNLink() {
+        Helper.scrollAndClick(driver, PoweredBySNLink);
+        return driver;
+    }
+
+    public void IsOlapicPageDisplayed(){
+        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
+        if (tabs2.size() > 1) {
+            driver.switchTo().window(tabs2.get(1));
+            System.out.println(driver.getCurrentUrl());
+        }
+
+    }
+
+    @FindBy(css = "a.olapic-nav-button.olapic-nav-next")
+    WebElement GalleryNextArrow;
+
+    public boolean IsNextArrowDisplayed() {
+        return GalleryNextArrow.isDisplayed();
+
+    }
+
+    public void ClickOnNextArrow() {
+        Helper.click(driver, GalleryNextArrow);
+    }
+
+    @FindBy(css = "a.olapic-nav-button.olapic-nav-prev")
+    WebElement GalleryPreviousArrow;
+
+    public boolean IsPreviousArrowDisplayed() {
+        return GalleryPreviousArrow.isDisplayed();
+    }
+
+    public void ClickOnPreviousArrow() {
+        Helper.click(driver, GalleryPreviousArrow);
+    }
+
+    @FindBy(xpath = "//li[@data-olapic-photo-id='3900323516']")
+    WebElement GalleryCurrentImage;
+
+
+    @FindBy(xpath = "//li[@data-olapic-photo-id='3897870934']")
+    WebElement GalleryNextImage;
+
+    public void IsNextImageChanged(){
+        Assert.assertNotEquals("Both Images are not same", GalleryNextImage, GalleryCurrentImage);
+    }
+
+    @FindBy(xpath = "//li[@data-olapic-photo-id='3932677111']")
+    WebElement GalleryCurrentPreImage;
+
+
+    @FindBy(xpath = "//li[@data-olapic-photo-id='3927704192']")
+    WebElement GalleryNowPreImage;
+
+    public void IsPreviousImageChanged() {
+        Assert.assertNotEquals("Both Images are not same", GalleryCurrentPreImage, GalleryNowPreImage);
+    }
+
+    @FindBy(css = "div.c-footer__main")
+    WebElement Footer;
+
+    public boolean IsFooterDisplayed() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        return Footer.isDisplayed();
+    }
+
+
+    @FindBy(css = "a[href*='sign-up']")
+    WebElement NewsletterSignUpLnk;
+
+    public RemoteWebDriver ClickOnNewsletterSignUpLink() {
+        Helper.click(driver, NewsletterSignUpLnk);
+        return driver;
+
+    }
 }
 
 

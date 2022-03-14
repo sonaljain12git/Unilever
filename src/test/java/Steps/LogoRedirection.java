@@ -32,8 +32,8 @@ public class LogoRedirection {
     public void on_click_on_logo_redirected_to_home_page() {
         System.out.println("Verifying the logo redirection");
         _home.ClickOnLogo();
-
     }
+
 
 
 }
