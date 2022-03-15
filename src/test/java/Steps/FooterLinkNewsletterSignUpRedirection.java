@@ -28,4 +28,6 @@ public class FooterLinkNewsletterSignUpRedirection {
         home.IsFooterDisplayed();
         signUp = home.ClickOnNewsletterSignUpLink();
     }
+
+
 }

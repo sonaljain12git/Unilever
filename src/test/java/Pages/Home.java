@@ -270,21 +270,21 @@ public class Home {
     }
 
     public String selectVendor() throws InterruptedException {
-        Helper.WaitForPageLoad(driver,20);
+        Helper.WaitForPageLoad(driver, 20);
         WebElement tblVendorLst = driver.findElement(By.cssSelector("ul.ps-online-sellers"));
-        var items=tblVendorLst.findElements(By.tagName("li"));
+        var items = tblVendorLst.findElements(By.tagName("li"));
         Random rand = new Random();
         int upperbound = items.size() - 1;
         int int_random = rand.nextInt(upperbound);
-        String navUrl=items.get(int_random).getAttribute("href");
-        Helper.scrollAndClick(driver,items.get(int_random));
-        Helper.WaitForPageLoad(driver,20);
+        String navUrl = items.get(int_random).getAttribute("href");
+        Helper.scrollAndClick(driver, items.get(int_random));
+        Helper.WaitForPageLoad(driver, 20);
         Thread.sleep(3000);
-        return  navUrl;
+        return navUrl;
     }
 
 
-    public RemoteWebDriver getActiveWindow(){
+    public RemoteWebDriver getActiveWindow() {
         ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
         if (tabs2.size() > 1) {
             driver.switchTo().window(tabs2.get(1));
@@ -321,8 +321,9 @@ public class Home {
 
     @FindBy(css = "button.us-c-newsletter-sign-up-popup__continue")
     WebElement ContinueBtn;
+
     public void ClickOnContinueButton() {
-        Helper.click(driver, ContinueBtn );
+        Helper.click(driver, ContinueBtn);
     }
 
     @FindBy(css = "div.keen-slider article.c-editorial-card")
@@ -340,7 +341,8 @@ public class Home {
 
     @FindBy(css = "a.k.olapic-k")
     WebElement VisitGalleryBtn;
-    public RemoteWebDriver ClickOnVisitGalleryBtn()  {
+
+    public RemoteWebDriver ClickOnVisitGalleryBtn() {
         Helper.scrollAndClick(driver, VisitGalleryBtn);
         return driver;
     }
@@ -362,7 +364,7 @@ public class Home {
         return driver;
     }
 
-    public void IsUGCPolicyPageDisplayed(){
+    public void IsUGCPolicyPageDisplayed() {
         ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
         if (tabs2.size() > 1) {
             driver.switchTo().window(tabs2.get(1));
@@ -380,7 +382,7 @@ public class Home {
         return driver;
     }
 
-    public void IsOlapicPageDisplayed(){
+    public void IsOlapicPageDisplayed() {
         ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
         if (tabs2.size() > 1) {
             driver.switchTo().window(tabs2.get(1));
@@ -419,7 +421,7 @@ public class Home {
     @FindBy(xpath = "//li[@data-olapic-photo-id='3897870934']")
     WebElement GalleryNextImage;
 
-    public void IsNextImageChanged(){
+    public void IsNextImageChanged() {
         Assert.assertNotEquals("Both Images are not same", GalleryNextImage, GalleryCurrentImage);
     }
 
@@ -451,7 +453,84 @@ public class Home {
         return driver;
 
     }
+
+    @FindBy(css = "a[href*='faq']")
+    WebElement FooterFAQLnk;
+
+    public void ClickOnFAQLink() {
+        Helper.click(driver, FooterFAQLnk);
+    }
+
+
+    @FindBy(css = "h1.c-page-header__title")
+    WebElement FAQPageTitle;
+
+    public void IsFAQPageDisplayed() {
+            String ExpFAQPageTitle = FAQPageTitle.getText();
+            Assert.assertEquals("Title should be as expected", "FREQUENTLY ASKED QUESTIONS", ExpFAQPageTitle);
+            System.out.println(ExpFAQPageTitle);
+    }
+
+    WebElement faqElement;
+
+    public void selectFAQAns () {
+            List<WebElement> lstElements = driver.findElements(By.xpath("//span[@class='c-accordion__header__icon']"));
+            Random rand = new Random();
+            System.out.print(lstElements.size());
+            int upperbound = lstElements.size() - 1;
+            int int_random = rand.nextInt(upperbound);
+            faqElement = lstElements.get(int_random);
+        /*((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", faqElement);
+        driver.executeScript("arguments[0].click();", faqElement);*/
+            Helper.scrollAndClick(driver, faqElement);
+    }
+
+    public boolean isAnswerDisplay () {
+            return faqElement.findElement(By.xpath("parent::button/parent::*[self::h1 or self::h2 or self::h3]/following-sibling::div")).isDisplayed();
+    }
+
+    public void clickCrossMark () {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", faqElement);
+            driver.executeScript("arguments[0].click();", faqElement);
+    }
+
+    @FindBy(css = "a[href*='contact-us']")
+    WebElement FooterContactUsLnk;
+
+    public void ClickOnContactUsLink () {
+        Helper.click(driver, FooterContactUsLnk);
+    }
+
+    @FindBy(css = "h1.c-page-header__title")
+    WebElement ContactUsPageTitle;
+
+    public void IsContactUsPageDisplayed () {
+            String ExpContactUsPageTitle = ContactUsPageTitle.getText();
+            Assert.assertEquals("Title should be as expected", "CONTACT US", ExpContactUsPageTitle);
+            System.out.println(ExpContactUsPageTitle);
+    }
+
+    @FindBy(css = "[id='6dcc510a-5a60-454f-9d2a-a2382bb320b1'] button span.c-accordion__header__icon")
+    WebElement FAQPageLastAccordion;
+
+    public void ClickOnLastAccordionOnFAQ() throws InterruptedException {
+        Thread.sleep(10);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", FAQPageLastAccordion);
+        driver.executeScript("arguments[0].click();", FAQPageLastAccordion);
+    }
+
+    @FindBy(css = "a[href*='contact-us']")
+    WebElement ContactUsLinkInFAQAccordion;
+
+    public void ClickOnContactUsLinkInFAQAccordion() {
+        Helper.scrollAndClick(driver, ContactUsLinkInFAQAccordion);
+    }
+
+
+
+
 }
+
 
 
 
