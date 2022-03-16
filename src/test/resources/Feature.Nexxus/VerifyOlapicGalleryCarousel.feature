@@ -1,6 +1,6 @@
 Feature: Validate the Olapic Gallery carousel rotation
 
-  @olapicGallery @needToImprove
+  @olapicGallery @needToImprove @nexxus
   Scenario: Verifying the Olapic Gallery carousel rotation
     Given The site is Up and Running
     When Gallery displayed then click on next arrow

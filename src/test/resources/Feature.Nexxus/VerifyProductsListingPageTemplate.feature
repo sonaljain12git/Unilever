@@ -1,6 +1,6 @@
 Feature: Validate Product Listing page template
 
-  @template
+  @template @nexxus
   Scenario: Verifying Product Listing page template
     Given The site is Up and Running
     When navigate to Product Listing page

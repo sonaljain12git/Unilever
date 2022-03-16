@@ -1,6 +1,6 @@
 Feature: Validate logo redirection on the Home Page
 
-  @logo
+  @logo @nexxus
   Scenario: Verifying logo redirection on the Home Page
     Given The site is Up and Running
     When verifying logo

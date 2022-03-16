@@ -1,6 +1,6 @@
 Feature: Validate accordion on FAQ page
 
-  @faq @needToUpdate
+  @faq @needToUpdate @nexxus
   Scenario: Verifying accordion on FAQ page
     Given The site is Up and Running
     When user click on Footer link FAQ

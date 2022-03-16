@@ -1,6 +1,6 @@
 Feature: Validate signup popup drawer functionality
 
-  @signup
+  @signup @nexxus
   Scenario: Verifying signup popup drawer functionality
     Given The site is Up and Running
     When SignUp popup is visible

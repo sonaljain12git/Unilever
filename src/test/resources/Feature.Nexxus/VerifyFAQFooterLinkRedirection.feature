@@ -1,6 +1,6 @@
 Feature: Validate Footer link FAQ Redirection
 
-  @faq
+  @faq @nexxus
   Scenario: Verifying Footer link FAQ Redirection
     Given The site is Up and Running
     When user click on Footer link FAQ

@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 public class Home {
 
     private RemoteWebDriver driver;
+    private boolean isValid = false;
 
     public Home(RemoteWebDriver _driver) {
         //Helper.WaitForPageLoad(_driver,60);
@@ -466,48 +467,48 @@ public class Home {
     WebElement FAQPageTitle;
 
     public void IsFAQPageDisplayed() {
-            String ExpFAQPageTitle = FAQPageTitle.getText();
-            Assert.assertEquals("Title should be as expected", "FREQUENTLY ASKED QUESTIONS", ExpFAQPageTitle);
-            System.out.println(ExpFAQPageTitle);
+        String ExpFAQPageTitle = FAQPageTitle.getText();
+        Assert.assertEquals("Title should be as expected", "FREQUENTLY ASKED QUESTIONS", ExpFAQPageTitle);
+        System.out.println(ExpFAQPageTitle);
     }
 
     WebElement faqElement;
 
-    public void selectFAQAns () {
-            List<WebElement> lstElements = driver.findElements(By.xpath("//span[@class='c-accordion__header__icon']"));
-            Random rand = new Random();
-            System.out.print(lstElements.size());
-            int upperbound = lstElements.size() - 1;
-            int int_random = rand.nextInt(upperbound);
-            faqElement = lstElements.get(int_random);
+    public void selectFAQAns() {
+        List<WebElement> lstElements = driver.findElements(By.xpath("//span[@class='c-accordion__header__icon']"));
+        Random rand = new Random();
+        System.out.print(lstElements.size());
+        int upperbound = lstElements.size() - 1;
+        int int_random = rand.nextInt(upperbound);
+        faqElement = lstElements.get(int_random);
         /*((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", faqElement);
         driver.executeScript("arguments[0].click();", faqElement);*/
-            Helper.scrollAndClick(driver, faqElement);
+        Helper.scrollAndClick(driver, faqElement);
     }
 
-    public boolean isAnswerDisplay () {
-            return faqElement.findElement(By.xpath("parent::button/parent::*[self::h1 or self::h2 or self::h3]/following-sibling::div")).isDisplayed();
+    public boolean isAnswerDisplay() {
+        return faqElement.findElement(By.xpath("parent::button/parent::*[self::h1 or self::h2 or self::h3]/following-sibling::div")).isDisplayed();
     }
 
-    public void clickCrossMark () {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", faqElement);
-            driver.executeScript("arguments[0].click();", faqElement);
+    public void clickCrossMark() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", faqElement);
+        driver.executeScript("arguments[0].click();", faqElement);
     }
 
     @FindBy(css = "a[href*='contact-us']")
     WebElement FooterContactUsLnk;
 
-    public void ClickOnContactUsLink () {
+    public void ClickOnContactUsLink() {
         Helper.click(driver, FooterContactUsLnk);
     }
 
     @FindBy(css = "h1.c-page-header__title")
     WebElement ContactUsPageTitle;
 
-    public void IsContactUsPageDisplayed () {
-            String ExpContactUsPageTitle = ContactUsPageTitle.getText();
-            Assert.assertEquals("Title should be as expected", "CONTACT US", ExpContactUsPageTitle);
-            System.out.println(ExpContactUsPageTitle);
+    public void IsContactUsPageDisplayed() {
+        String ExpContactUsPageTitle = ContactUsPageTitle.getText();
+        Assert.assertEquals("Title should be as expected", "CONTACT US", ExpContactUsPageTitle);
+        System.out.println(ExpContactUsPageTitle);
     }
 
     @FindBy(css = "[id='6dcc510a-5a60-454f-9d2a-a2382bb320b1'] button span.c-accordion__header__icon")
@@ -526,8 +527,225 @@ public class Home {
         Helper.scrollAndClick(driver, ContactUsLinkInFAQAccordion);
     }
 
+    @FindBy(css = "span#contact-faq-title.c-accordion__header__label")
+    WebElement FAQAccordion;
+
+    public void ClickOnFAQAccordion() throws InterruptedException {
+        Thread.sleep(10);
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-250)", FAQAccordion);
+        Thread.sleep(10);
+        driver.executeScript("arguments[0].click();", FAQAccordion);
+
+    }
+
+    @FindBy(css = "a[href*='faq']")
+    WebElement FAQLnkInAccordion;
+
+    public void ClickOnFAQLnkInAccordion() throws InterruptedException {
+        Thread.sleep(10);
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)", FAQLnkInAccordion);
+        Thread.sleep(10);
+        driver.executeScript("arguments[0].click();", FAQLnkInAccordion);
+    }
+
+    @FindBy(xpath = "//span[@id='683c5e8f-1011-4eaa-a28f-1e85390350f4-title']")
+    WebElement FirstFAQAccordion;
+
+    public void GetFirstFAQAccordionText() {
+        Helper.click(driver, FirstFAQAccordion);
+        System.out.println(FirstFAQAccordion.getText());
+    }
+
+    @FindBy(css = "#contact-web-inquiry-title")
+    WebElement WebInquiryAccordion;
+
+    public void ClickOnWebInquiryAccordion() throws InterruptedException {
+        Thread.sleep(10);
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-250)", WebInquiryAccordion);
+        Thread.sleep(10);
+        driver.executeScript("arguments[0].click();", WebInquiryAccordion);
+    }
+
+    @FindBy(css = "h2.c-form__title.o-heading-xl")
+    WebElement WebInquiryForm;
+
+    public void GetWebInquiryForm() throws InterruptedException {
+        Thread.sleep(10);
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 50)", WebInquiryForm);
+        System.out.println(WebInquiryForm.getText());
+    }
+
+    @FindBy(css = "#givenName")
+    WebElement txtFirstName;
+    @FindBy(css = "#familyName")
+    WebElement txtLastName;
+    @FindBy(css = "#email")
+    WebElement txtEmail;
+    @FindBy(css = "#streetAddress1")
+    WebElement txtStreetAddress1;
+    @FindBy(css = "#locality")
+    WebElement txtCity;
+    @FindBy(xpath = "//select[@name='region']")
+    WebElement selectState;
+    @FindBy(css = "#postalCode")
+    WebElement txtPostalCode;
+    @FindBy(xpath = "//select[@id='languagePref']")
+    WebElement selectLanguage;
+    @FindBy(xpath = "//select[@id='inquiryType']")
+    WebElement selectInquiryType;
+    @FindBy(css = "#comments")
+    WebElement txtComment;
+
+    @FindBy(css = "#corporate")
+    WebElement chkCorporateConfirm;
+
+    @FindBy(css = "span.c-button__text")
+    WebElement btnSubmit;
+
+    public void EnterTextDetails(String firstname, String lastname, String email, String streetAddress1, String City) throws InterruptedException {
+        Helper.scrollDownPage(driver, 1);
+        Helper.EnterText(driver, txtFirstName, firstname);
+        Helper.EnterText(driver, txtLastName, lastname);
+        Helper.EnterText(driver, txtEmail, email);
+        Helper.EnterText(driver, txtStreetAddress1, streetAddress1);
+        Helper.EnterText(driver, txtCity, City);
+        Helper.scrollDownPage(driver, 1);
+        Helper.scrollDownPage(driver, 1);
+        Helper.scrollAndClick(driver, chkCorporateConfirm);
+    }
+    public void EnterPostalCode(String postalCode) {
+        Helper.EnterText(driver, txtPostalCode, postalCode);
+    }
+
+    public void EnterComment(String comments) {
+        Helper.EnterText(driver, txtComment, comments);
+    }
+
+    public void SelectState(String State) {
+        Helper.selectFromDDn(driver, State, selectState);
+    }
+
+    public void SelectLanguage(String Language) {
+        Helper.selectFromDDn(driver, Language, selectLanguage);
+    }
+
+    public void SelectInquiryType(String InquiryType) {
+        Helper.selectFromDDn(driver, InquiryType, selectInquiryType);
+    }
+
+    @FindBy(css = "div.recaptcha-checkbox-checkmark")
+    WebElement captchaCheckbox;
+
+    public void ClickOnCaptchaCheckbox(){
+        Helper.scrollAndClick(driver, captchaCheckbox);
+    }
+
+    public void ClickOnSubmitButton () {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", btnSubmit);
+            driver.executeScript("arguments[0].click();", btnSubmit);
+    }
+
+    @FindBy(css = "div.clearfix.component.formElementV2")
+    WebElement lblConform;
 
 
+    @FindBy(xpath = "//div[@class='clearfix component formElementV2']//span")
+    WebElement lblConformMsg;
+
+    private Boolean isEmailConfirmDisplay () {
+        return driver.findElements(By.cssSelector("#confirmGrp>div>div>#confirmButton")).size() > 0;
+    }
+
+    public void clickConfirm () {
+        if (isEmailConfirmDisplay())
+            driver.findElement(By.cssSelector("#confirmGrp>div>div>#confirmButton")).click();
+    }
+
+
+    public boolean VerifySuccessContactUS () {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOf(lblConform));
+        return lblConform.isDisplayed();
+    }
+
+    public String getMessage () {
+        return lblConformMsg.getText();
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
+
+
+    @FindBy(css = "a[href*='sitemap']")
+    WebElement SitemapLnk;
+    public void ClickOnSitemapLink() {
+        Helper.scrollAndClick(driver, SitemapLnk);
+    }
+
+    @FindBy(css = "h1.c-page-header__title")
+    WebElement SitemapPageTitle;
+
+    public void IsSitemapPageDisplayed() {
+        String ExpSitemapPageTitle = SitemapPageTitle.getText();
+        Assert.assertEquals("Title should be as expected", "SITE MAP", ExpSitemapPageTitle);
+        System.out.println(ExpSitemapPageTitle);
+    }
+
+    @FindBy(css = "a[href*='products/styling/nexxus-5-in-1-multi-hair-styler/']")
+    WebElement LinkOnSitemapPage;
+
+    public void ClickOnLinkOnSitemapPage() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", LinkOnSitemapPage);
+        driver.executeScript("arguments[0].click();", LinkOnSitemapPage);
+    }
+
+    @FindBy(css = "h1.us-c-product__title")
+    WebElement LnkRedirectedPageTitle;
+
+    public void GetLinkRedirectedUrl() throws InterruptedException {
+        String ActPageTitle = LnkRedirectedPageTitle.getText();
+        Assert.assertEquals("Title should be as expected", "5 IN 1 MULTI HAIR STYLER", ActPageTitle);
+        System.out.println(ActPageTitle);
+
+    }
+
+
+    @FindBy(css = "a[href*='privacy-notice']")
+    WebElement PrivacyPolicyLnk;
+
+    public void ClickOnPrivacyPolicyLink() throws InterruptedException{
+        Helper.scrollAndClick(driver, PrivacyPolicyLnk);
+        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
+        if (tabs2.size() > 1) {
+            driver.switchTo().window(tabs2.get(1));
+        }
+    }
+
+
+    public void IsPrivacyPolicyPageDisplayed() {
+        String ExpPrivacyPageUrl = driver.getCurrentUrl();
+        Assert.assertEquals("Redirected to correct url","https://www.unilevernotices.com/privacy-notices/usa-english.html", ExpPrivacyPageUrl);
+        System.out.println(ExpPrivacyPageUrl);
+    }
+
+    @FindBy(css = "a[href*='termsofuse']")
+    WebElement TermsOfUseLnk;
+
+    public void ClickOnTermsOfUseLink() throws InterruptedException{
+        Helper.scrollAndClick(driver, TermsOfUseLnk);
+        ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
+        if (tabs2.size() > 1) {
+            driver.switchTo().window(tabs2.get(1));
+        }
+    }
+
+
+    public void IsTermsOfUsePageDisplayed() {
+        String ExpTermsOfUsePageUrl = driver.getCurrentUrl();
+        Assert.assertEquals("Redirected to correct url","https://www.unileverus.com/terms/termsofuse.html", ExpTermsOfUsePageUrl);
+        System.out.println(ExpTermsOfUsePageUrl);
+    }
 
 }
 

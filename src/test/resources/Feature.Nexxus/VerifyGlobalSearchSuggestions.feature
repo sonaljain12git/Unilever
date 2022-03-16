@@ -1,6 +1,6 @@
 Feature: Validate global search suggestion
 
-  @search
+  @search @nexxus
   Scenario: Verifying global search suggestions visibility and redirection
     Given The site is Up and Running
     When try to write and click on search icon

@@ -1,6 +1,6 @@
 Feature: Validate Footer link Newsletter Sign Up Redirection
 
-  @signup
+  @signup @nexxus
   Scenario: Verifying Footer link Newsletter Sign Up Redirection to signup form
     Given The site is Up and Running
     When user click on Footer link Newsletter Sign Up link

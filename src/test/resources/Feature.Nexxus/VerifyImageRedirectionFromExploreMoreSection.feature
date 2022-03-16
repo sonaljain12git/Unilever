@@ -1,6 +1,6 @@
 Feature: Validate the Image redirection from Explore More section
 
-@exploreMore
+@exploreMore @nexxus
 Scenario: Verifying the Image redirection from Explore More section
 Given The site is Up and Running
 When verifying the Explore More section visibility

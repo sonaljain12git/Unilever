@@ -1,6 +1,6 @@
 Feature: Validate Where to buy link
 
-  @link
+  @link @nexxus
   Scenario: Verifying Where to buy link redirection
     Given The site is Up and Running
     When User try to click on Where to Buy link

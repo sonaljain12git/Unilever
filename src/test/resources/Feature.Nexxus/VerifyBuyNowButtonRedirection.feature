@@ -1,6 +1,6 @@
 Feature: Validate the buy now button redirection
 
-  @buyNow
+  @buyNow @nexxus
   Scenario: Verifying buy now button functionality
     Given The site is Up and Running
     When verifying the best selling product section visibility
@@ -8,7 +8,7 @@ Feature: Validate the buy now button redirection
     Then Find Online popup is displayed
     And click on cross button on popup
 
-  @buyNow
+  @buyNow @nexxus
   Scenario: Verifying buy now functionality using vendor
     Given The site is Up and Running
     And click on Buy Now button
